@@ -1,3 +1,4 @@
+ UI/UX
 presentation
 
 # QuadShield: Hardware-Enforced 4-Layer Cyber Security System
@@ -40,6 +41,6 @@ The repository is structured across multiple dedicated branches to streamline de
 │   └── unidirectional-data-gateway/ # Layer 3: One-way hardware data diode implementation
 ├── UI/UX                           # User Interface & monitoring dashboard assets
 ├── presentation                    # PPT slides, architecture diagrams, and hackathon media
-└── doc                             # Project documentation, datasheets, & math models
- main
+
+
 
