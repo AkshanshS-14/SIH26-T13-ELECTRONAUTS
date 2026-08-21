@@ -17,3 +17,7 @@ This branch contains the core component development for the **Li-Fi Cybersecurit
 4. Online Simulation: Click here to view the live circuit schematic and observe component behavior in real time.
   
 https://wokwi.com/projects/472855077629837313
+
+
+<img width="801" height="729" alt="WhatsApp Image 2026-08-21 at 2 01 10 PM" src="https://github.com/user-attachments/assets/4018623d-3d68-4efc-b1dc-1c53e11839d2" />
+
