@@ -5,6 +5,9 @@ A high-fidelity Secure Operations Center (SOC) dashboard designed to monitor and
 Front page:
 <img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/957dcb83-8301-420f-99da-6eaf0ece085e" />
 
+Prototype Link:
+https://www.figma.com/make/T1Ldgegzc9mME7wGiITDsj/Cybersecurity-SOC-Dashboard-Prototype?t=pAh0tvViOBB6w5YT-1
+
 ## Features
 
 - Real-time Li-Fi optical link monitoring
