@@ -1,0 +1,113 @@
+// Physical Isolation State Machine for Arduino Uno
+// Team Assignment: Teammate 4 (Firmware & State Machine Logic)
+// Pin configurations for Arduino Uno
+const int RELAY_CONTROL_PIN = 5;    // Drives relay/logic gate to connect data lines
+const int TAMPER_SWITCH_PIN = 4;    // Chassis microswitch interrupt pin
+
+// System State Enum
+enum SystemState {
+  DISCONNECTED_DEFAULT,
+  VERIFYING_TOKEN,
+  CIRCUIT_CONNECTED,
+  SECURITY_LOCKOUT
+};
+
+// Global state variables
+SystemState currentState = DISCONNECTED_DEFAULT;
+volatile bool tamperTriggered = false;
+
+// Function prototypes
+void setPhysicalIsolation(bool connect);
+bool verifyAuthToken(String token);
+void triggerZeroization(); // Standard interrupt function for Arduino Uno
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Configure pins
+  pinMode(RELAY_CONTROL_PIN, OUTPUT);
+  pinMode(TAMPER_SWITCH_PIN, INPUT_PULLUP);
+  
+  // Attach hardware interrupt for the physical tamper switch (Pin 4)
+  attachInterrupt(digitalPinToInterrupt(TAMPER_SWITCH_PIN), triggerZeroization, FALLING);
+
+  // Default State: Keep database data lines physically isolated
+  setPhysicalIsolation(false);
+  
+  Serial.println("System Initialized: Data lines are physically isolated by default.");
+  Serial.println("Enter secure token via Serial Monitor to connect circuit:");
+}
+
+void loop() {
+  // Check if a physical tamper event occurred via interrupt
+  if (tamperTriggered) {
+    currentState = SECURITY_LOCKOUT;
+    setPhysicalIsolation(false);
+    Serial.println("[CRITICAL ALERT] Chassis breach detected! Zeroization & Permanent Lockout engaged.");
+    while (true) {
+      // Permanent lockdown loop; system must be hard-reset manually
+      delay(1000);
+    }
+  }
+
+  // Handle State Machine Logic
+  switch (currentState) {
+    case DISCONNECTED_DEFAULT:
+      // Waiting for incoming authentication token
+      if (Serial.available() > 0) {
+        String incomingToken = Serial.readStringUntil('\n');
+        incomingToken.trim(); // Clean up trailing spaces/newlines
+        
+        currentState = VERIFYING_TOKEN;
+        Serial.println("State: VERIFYING_TOKEN... Checking credentials.");
+        
+        if (verifyAuthToken(incomingToken)) {
+          currentState = CIRCUIT_CONNECTED;
+          setPhysicalIsolation(true);
+          Serial.println("State: CIRCUIT_CONNECTED. Data lines unisolated for session.");
+        } else {
+          currentState = DISCONNECTED_DEFAULT;
+          Serial.println("Authentication Failed. Returning to DISCONNECTED_DEFAULT state.");
+          Serial.println("Please try entering the token again:");
+        }
+      }
+      break;
+
+    case CIRCUIT_CONNECTED:
+      // Maintain connection or monitor session timeout if needed
+      break;
+
+    case SECURITY_LOCKOUT:
+      // Handled by the infinite lockdown loop above
+      break;
+      
+    default:
+      currentState = DISCONNECTED_DEFAULT;
+      break;
+  }
+  
+  delay(100);
+}
+
+// Controls the relay or logic gate to physically isolate or connect data lines
+void setPhysicalIsolation(bool connect) {
+  if (connect) {
+    digitalWrite(RELAY_CONTROL_PIN, HIGH); // Complete the circuit (Lower the drawbridge)
+  } else {
+    digitalWrite(RELAY_CONTROL_PIN, LOW);  // Physically cut data lines (Default safe state)
+  }
+}
+
+// Validates the secure token provided by the user/system
+bool verifyAuthToken(String token) {
+  String validToken = "SECURE_TOKEN_XYZ"; // Sample secure token for hackathon demo
+  if (token == validToken) {
+    return true;
+  }
+  return false;
+}
+
+// Interrupt Service Routine (ISR) for chassis tamper switch (No IRAM_ATTR needed for Uno)
+void triggerZeroization() {
+  tamperTriggered = true;
+}

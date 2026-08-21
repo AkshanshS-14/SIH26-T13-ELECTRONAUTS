@@ -1,0 +1,49 @@
+const int relayPin = 5;   // LED representing relay/data line connection
+const int buttonPin = 2;  // Push button connected to Pin 2
+
+const String correctToken = "SECURE_TOKEN_XYZ";
+bool isConnected = false;
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP); // Internal pull-up
+  
+  digitalWrite(relayPin, LOW); // Default: Data lines isolated
+  
+  Serial.begin(9600);
+  while (!Serial); // Wait for serial monitor
+  
+  Serial.println("System Initialized: Data lines are physically isolated by default.");
+  Serial.println("Please enter your secure token via Serial Monitor:");
+}
+
+void loop() {
+  // Check if tamper button is pressed
+  if (digitalRead(buttonPin) == LOW) {
+    isConnected = false;
+    digitalWrite(relayPin, LOW);
+    Serial.println("\n[ALERT] Tamper switch triggered! Circuit locked out.");
+    delay(500); // Debounce
+  }
+
+  // Check for incoming serial token input
+  if (Serial.available() > 0) {
+    String inputToken = Serial.readStringUntil('\n');
+    inputToken.trim(); // Removes spaces, carriage returns, and newlines
+
+    // Ignore empty triggers
+    if (inputToken.length() == 0) {
+      return;
+    }
+
+    if (inputToken == correctToken) {
+      isConnected = true;
+      digitalWrite(relayPin, HIGH); // Turn on LED
+      Serial.println("[SUCCESS] Token verified! Data lines connected.");
+    } else {
+      isConnected = false;
+      digitalWrite(relayPin, LOW);
+      Serial.println("[ERROR] Invalid token! Access denied.");
+    }
+  }
+}
