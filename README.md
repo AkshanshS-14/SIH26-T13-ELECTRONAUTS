@@ -37,9 +37,6 @@ The repository is structured across multiple dedicated branches to streamline de
 │   ├── port-transient-clamping/    # Layer 2: LTspice schematic, wave plots, & clamping demo
 │   └── unidirectional-data-gateway/ # Layer 3: One-way hardware data diode implementation
 ├── UI/UX                           # User Interface & monitoring dashboard assets
-├── Port-Transient-Clamping         # Dedicated branch for Layer 2 development & testing
-├── Unidirectional-data-gateway     # Dedicated branch for Layer 3 development & testing
-├── chassis-defense                 # Dedicated branch for Layer 4 firmware & sensor development
 ├── presentation                    # PPT slides, architecture diagrams, and hackathon media
 └── doc                             # Project documentation, datasheets, & math models
 
