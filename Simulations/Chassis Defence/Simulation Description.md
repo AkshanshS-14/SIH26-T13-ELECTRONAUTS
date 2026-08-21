@@ -78,6 +78,12 @@ make TARGET=ARM_CORTEX_M4
 - **Power Independence:** Ensure the microcontroller is backed by a supercapacitor or coin cell to detect intrusions during unpowered transit.
 - **Physical Meshes:** Best paired with continuous serpentine PCB traces on enclosure walls for drilling protection.
 
+Link for the demonstration of Tamper Evident Zeroization:
+
+
+https://wokwi.com/projects/472857699194702849
+
+
 
 
 
