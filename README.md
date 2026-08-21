@@ -2,12 +2,13 @@
 
 **Team ID:** SIH26-T13  
 **Team Name:** Electronauts  
-**Hackathon:** Smart India Hackathon (SIH)  Inernal Round
+**Hackathon:** Smart India Hackathon (SIH)  Inernal Round   
+**Problem Statement:** The rapid growth of interconnected system has increase the complexity of cyber threats, unauthorized access, data breaches, identity relate risks an manipulation of digital information. At the same time, organisations increasingly nee to establish trust when exchanging information across different systems an stakeholders. there is a nee for robust an intelligent solutions that can identify, prevent, respond to or reduce cyber security risks while improving trust an security in digital ecosystems.  
 **Theme:** Blockchain & Cybersecurity  
 
 ---
 
-##  Project Overview
+##  Solution Overview
 
 **QuadShield** is a 4-layer hardware-backed zero-trust security architecture designed to prevent unauthorized physical access, fault injection attacks, remote command execution, and data breaches. By leveraging the ultra-fast switching properties, low forward voltage drop ($V_F \approx 0.3\text{V}$), and near-zero reverse recovery times of Schottky diodes, QuadShield enforces physical security barriers that cannot be bypassed via software exploits.
 
