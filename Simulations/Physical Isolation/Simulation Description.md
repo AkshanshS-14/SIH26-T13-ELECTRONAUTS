@@ -14,4 +14,6 @@ This branch contains the core component development for the **Li-Fi Cybersecurit
 1. Load the script from the `Firmware/` directory into your Arduino IDE or Wokwi workspace.
 2. Wire a digital input pin (`Pin 2`) to a push-button simulating the chassis door.
 3. Trigger the button/switch to verify that the system locks down and clears all key arrays.
+4. Online Simulation: Click here to view the live circuit schematic and observe component behavior in real time.
   
+https://wokwi.com/projects/472855077629837313
