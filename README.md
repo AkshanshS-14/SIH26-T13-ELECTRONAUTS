@@ -2,7 +2,7 @@
 
 **Team ID:** SIH26-T13  
 **Team Name:** Electronauts  
-**Hackathon:** Smart India Hackathon (SIH)  
+**Hackathon:** Smart India Hackathon (SIH)  Inernal Round
 **Theme:** Blockchain & Cybersecurity  
 
 ---
@@ -21,6 +21,8 @@
 * **Layer 4: Chassis Defense (Tamper-Evident Zeroization)** — Hardware-interrupt logic linked to a physical chassis switch. Triggers immediate memory key-wiping (zeroization) upon physical box intrusion.
 
 ---
+Complete system Architecture:
+<img width="1408" height="768" alt="image" src="https://github.com/user-attachments/assets/39d93168-4448-4d3c-b107-6b40d52bb092" />
 
 ##  Repository Structure & Branches
 
@@ -39,3 +41,5 @@ The repository is structured across multiple dedicated branches to streamline de
 ├── chassis-defense                 # Dedicated branch for Layer 4 firmware & sensor development
 ├── presentation                    # PPT slides, architecture diagrams, and hackathon media
 └── doc                             # Project documentation, datasheets, & math models
+
+
