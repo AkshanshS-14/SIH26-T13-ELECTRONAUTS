@@ -1,1 +1,17 @@
+###  Firmware & Hardware Integration
+This branch contains the core component development for the **Li-Fi Cybersecurity Gateway**, focusing specifically on physical tamper detection and microcontroller logic.
 
+---
+
+###  What's Included in This Branch?
+* **Hardware Interrupt Script (`Firmware/`):** Implements an interrupt service routine (`attachInterrupt`) connected to a chassis microswitch to instantly capture physical breaches.
+* **Zeroization Mechanism:** C++ logic designed to immediately wipe sensitive database encryption keys from volatile memory (`RAM`) the moment an intrusion is detected.
+* **Simulation & Testing Support:** Ready for validation via browser-based simulators (like Wokwi) or physical microcontrollers (ESP32/Arduino).
+
+---
+
+###  How to Test
+1. Load the script from the `Firmware/` directory into your Arduino IDE or Wokwi workspace.
+2. Wire a digital input pin (`Pin 2`) to a push-button simulating the chassis door.
+3. Trigger the button/switch to verify that the system locks down and clears all key arrays.
+  
